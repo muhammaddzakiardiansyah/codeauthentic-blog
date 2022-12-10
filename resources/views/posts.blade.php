@@ -11,7 +11,7 @@
                     <a href="/post/{{ $post->slug }}" class="text-dark text-decoration-none">
                       {{-- <img src="img/{{ $post->image }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;"> --}}
                       <div class="card-body">
-                        <h5 class="card-title">{{ $post->judul }}✔</h5>
+                        <h5 class="card-title">{{ $post->judul }}</h5>
                         <small>Ditulis oleh <a href="#">{{ $post->user->name }}</a> di bidang <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->slug }}</a></small>
                         <p class="card-text">{{ $post->excrpt }} <a href="/post/{{ $post->slug }}" class="text-decoration-none">baca selengkapnya....</a></p>
                     </a>
