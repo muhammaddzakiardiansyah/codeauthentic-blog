@@ -4,12 +4,27 @@
     <div class="container">
         <div class="row justify-content-center">
             <h3 class="text-center">{{ $title }}</h3>
-            @foreach ($posts as $post)
+            @if ($posts->count())
+                <div class="card mb-3">
+                  <img src="https://source.unsplash.com/1500x400/{{ $posts[0]->category->nama }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h3 class="card-title"><a href="/post/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->judul }}</a></h3>
+                    <small>
+                      Ditulis oleh <a href="/authors/{{ $posts[0]->user->username }}">{{ $posts[0]->user->name }}</a> di bidang <a href="/categories/{{ $posts[0]->category->slug }}" class="text-decoration-none">{{ $posts[0]->category->slug }}</a> pada {{ $posts[0]->created_at->diffForHumans() }}
+                    </small>
+                    <p class="card-text">{{ $posts[0]->excrpt }}</p>
+                    <a href="/post/{{ $posts[0]->slug }}" class="text-decoration-none btn btn-primary">baca selengkapnya....</a>
+                  </div>
+                </div>
+            @else
+                 <p class="text-center fs-4">Belum ada postingan?</p>
+            @endif
+            @foreach ($posts->skip(1) as $post)
                 <div class="col-md-3"></div>
                 <div class="col-md-6 align-self-center mt-2">
                   <div class="card" style="width: 33rem;">
                     <a href="/post/{{ $post->slug }}" class="text-dark text-decoration-none">
-                      {{-- <img src="img/{{ $post->image }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;"> --}}
+                      <img src="https://source.unsplash.com/1500x400/{{ $post->category->nama }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
                       <div class="card-body">
                         <h5 class="card-title">{{ $post->judul }}</h5>
                         <small>Ditulis oleh <a href="/authors/{{ $post->user->username }}">{{ $post->user->name }}</a> di bidang <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->slug }}</a></small>
