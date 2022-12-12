@@ -9,7 +9,7 @@
                   {{-- <img src="img/{{ $post["image"] }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;"> --}}
                   <div class="card-body">
                     <h5 class="card-title">{{ $post->judul }}✔</h5>
-                    <p>By muhammad dzaki in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->nama }}</a></p>
+                    <p>By <a href="#">{{ $post->user->name }}</a> in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->nama }}</a></p>
                     <p class="card-text">{!! $post->caption !!}</p>
                 <div class="content">
                     <span class="badge text-bg-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">

@@ -3,7 +3,7 @@
 @section('isiutama')
     <div class="container">
         <div class="row justify-content-center">
-            
+            <h3 class="text-center">{{ $title }}</h3>
             @foreach ($posts as $post)
                 <div class="col-md-3"></div>
                 <div class="col-md-6 align-self-center mt-2">
@@ -12,7 +12,7 @@
                       {{-- <img src="img/{{ $post->image }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;"> --}}
                       <div class="card-body">
                         <h5 class="card-title">{{ $post->judul }}</h5>
-                        <small>Ditulis oleh <a href="#">{{ $post->user->name }}</a> di bidang <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->slug }}</a></small>
+                        <small>Ditulis oleh <a href="/authors/{{ $post->user->username }}">{{ $post->user->name }}</a> di bidang <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->slug }}</a></small>
                         <p class="card-text">{{ $post->excrpt }} <a href="/post/{{ $post->slug }}" class="text-decoration-none">baca selengkapnya....</a></p>
                     </a>
                     <div class="content">
