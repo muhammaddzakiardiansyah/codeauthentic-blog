@@ -48,6 +48,11 @@ class DatabaseSeeder extends Seeder
             'slug' => 'desgin'
         ]);
 
+        Category::create([
+            'nama' => 'Personal',
+            'slug' => 'personal'
+        ]);
+
         // Post::create([
         //     'category_id' => '1',
         //     'user_id' => '1',

@@ -3,31 +3,48 @@
 @section('isiutama')
     <div class="container">
         <div class="row justify-content-center">
-            <h3 class="text-center">{{ $title }}</h3>
+            <h3 class="text-center mb-3">{{ $title }}</h3>
+            <div class="container">
+              <div class="row justify-content-center mb-3">
+                <div class="col-md-6">
+                  <form action="/posts" method="GET">
+                    @if (request('category'))
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+                    @if (request('user'))
+                        <input type="hidden" name="user" value="{{ request('user') }}">
+                    @endif
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="Search..." name="search" value="{{ request('search') }}">
+                      <button class="btn btn-dark" type="submit">Cari!!</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
             @if ($posts->count())
                 <div class="card mb-3">
-                  <img src="https://source.unsplash.com/1500x400/{{ $posts[0]->category->nama }}" class="card-img-top" alt="...">
+                  <img src="https://source.unsplash.com/1500x400{{ $posts[0]->category->nama }}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h3 class="card-title"><a href="/post/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->judul }}</a></h3>
                     <small>
-                      Ditulis oleh <a href="/authors/{{ $posts[0]->user->username }}">{{ $posts[0]->user->name }}</a> di bidang <a href="/categories/{{ $posts[0]->category->slug }}" class="text-decoration-none">{{ $posts[0]->category->slug }}</a> pada {{ $posts[0]->created_at->diffForHumans() }}
+                      Ditulis oleh <a href="/posts?user={{ $posts[0]->user->username }}">{{ $posts[0]->user->name }}</a> di bidang <a href="/posts?category={{ $posts[0]->category->slug }}" class="text-decoration-none">{{ $posts[0]->category->slug }}</a> pada {{ $posts[0]->created_at->diffForHumans() }}
                     </small>
                     <p class="card-text">{{ $posts[0]->excrpt }}</p>
                     <a href="/post/{{ $posts[0]->slug }}" class="text-decoration-none btn btn-primary">baca selengkapnya....</a>
                   </div>
                 </div>
-            @else
-                 <p class="text-center fs-4">Belum ada postingan?</p>
-            @endif
+           
             @foreach ($posts->skip(1) as $post)
                 <div class="col-md-3"></div>
                 <div class="col-md-6 align-self-center mt-2">
                   <div class="card" style="width: 33rem;">
+                    <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.5); "><a href="/posts?category={{ $post->category->slug }}" class="text-white text-decoration-none">{{ $post->category->nama }}</a></div>
                     <a href="/post/{{ $post->slug }}" class="text-dark text-decoration-none">
-                      <img src="https://source.unsplash.com/1500x400/{{ $post->category->nama }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
+                      <img src="https://source.unsplash.com/1500x400?{{ $post->category->nama }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
                       <div class="card-body">
                         <h5 class="card-title">{{ $post->judul }}</h5>
-                        <small>Ditulis oleh <a href="/authors/{{ $post->user->username }}">{{ $post->user->name }}</a> di bidang <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->slug }}</a></small>
+                        <small>Ditulis oleh <a href="/posts?user={{ $post->user->username }}">{{ $post->user->name }}</a> pada {{ $post->created_at->diffForHumans() }}</small>
                         <p class="card-text">{{ $post->excrpt }} <a href="/post/{{ $post->slug }}" class="text-decoration-none">baca selengkapnya....</a></p>
                     </a>
                     <div class="content">
@@ -46,6 +63,13 @@
               </div>
               <div class="col-md-3"></div>
             @endforeach
+
+       @else
+         <p class="text-center fs-4">Belum ada postingan?</p>
+       @endif
+            <div class="mt-3 d-flex justify-content-end">
+              {{ $posts->links() }}
+            </div>
         </div>
     </div>
 @endsection

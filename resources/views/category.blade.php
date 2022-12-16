@@ -9,7 +9,7 @@
                 <div class="col-md-6 align-self-center mt-2">
                   <div class="card" style="width: 33rem;">
                     <a href="/post/{{ $post->slug }}" class="text-dark text-decoration-none">
-                      {{-- <img src="img/{{ $post->image }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;"> --}}
+                      <img src="https://source.unsplash.com/1500x400?{{ $post->category->nama }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
                       <div class="card-body">
                         <h5 class="card-title">{{ $post->judul }}✔</h5>
                         <small>Ditulis oleh <a href="/authors/{{ $post->user->username }}">{{ $post->user->name }}</a> di bidang <a href="">{{ $post->category->nama }}</a></small>

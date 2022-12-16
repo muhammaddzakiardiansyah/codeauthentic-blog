@@ -7,19 +7,22 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ $title === 'Home' ? 'active' : '' }}" href="/">Home</a>
+            <a class="nav-link {{ $active === 'home' ? 'active' : '' }}" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ $title === 'About' ? 'active' : '' }}" href="/about">About</a>
+            <a class="nav-link {{ $active === 'about' ? 'active' : '' }}" href="/about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ $title === 'Musica' ? 'active' : '' }}" href="/musica">Musica</a>
+            <a class="nav-link {{ $active === 'musica' ? 'active' : '' }}" href="/musica">Musica</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ $title === 'Posts' ? 'active' : '' }}" href="/posts">Posts</a>
+            <a class="nav-link {{ $active === 'posts' ? 'active' : '' }}" href="/posts">Posts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ $title === 'Data' ? 'active' : '' }}" href="/data">Data</a>
+            <a class="nav-link {{ $active === 'data' ? 'active' : '' }}" href="/data">Data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ $active === 'categories' ? 'active' : '' }}" href="/categories">Categories</a>
           </li>
         </ul>
       </div>

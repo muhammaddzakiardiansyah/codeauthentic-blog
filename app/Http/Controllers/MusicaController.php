@@ -6,7 +6,8 @@
   class MusicaController extends Controller {
     public function pilih() {
         return view('musica', [
-            "title" => "Musica"
+            "title" => "Musica",
+            "active" => "musica"
         ]);
     }
   }

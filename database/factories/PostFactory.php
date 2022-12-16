@@ -17,8 +17,11 @@ class PostFactory extends Factory
             'judul' => $this->faker->sentence(2,5),
             'slug' => $this->faker->slug(),
             'excrpt' => $this->faker->paragraph(),
-            'caption' => $this->faker->paragraph(mt_rand(10,15)),
-            'category_id' => mt_rand(1,3),
+            // 'caption' => $this->faker->paragraph(mt_rand(10,15)),
+            'caption' => collect($this->faker->paragraph(mt_rand(5,10)))
+                      ->map(fn($p) => "<p>$p</p>")
+                      ->implode(' '),
+            'category_id' => mt_rand(1,4),
             'user_id' => mt_rand(1,3)
 
         ];

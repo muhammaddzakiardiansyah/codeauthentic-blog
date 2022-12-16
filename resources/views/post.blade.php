@@ -6,10 +6,10 @@
             <div class="col-md-3"></div>
             <div class="col-md-6 align-self-center mt-2">
               <div class="card" style="width: 33rem;">
-                  {{-- <img src="img/{{ $post["image"] }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;"> --}}
+                  <img src="https://source.unsplash.com/1500x400?{{ $post->category->nama }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
                   <div class="card-body">
                     <h5 class="card-title">{{ $post->judul }}✔</h5>
-                    <p>By <a href="#">{{ $post->user->name }}</a> in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->nama }}</a></p>
+                    <p>By <a href="/posts?user={{ $post->user->username }}">{{ $post->user->name }}</a> in <a href="/posts?category={{ $post->category->slug }}">{{ $post->category->nama }}</a></p>
                     <p class="card-text">{!! $post->caption !!}</p>
                 <div class="content">
                     <span class="badge text-bg-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
