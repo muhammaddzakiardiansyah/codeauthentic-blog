@@ -4,11 +4,12 @@
 <div class="row justify-content-center">
   <div class="col-md-4">
     <main class="form-signin w-100 m-auto">
-      <form>
+      <form action="/register" method="POST">
+        @csrf
         <h1 class="h3 mb-3 fw-normal text-center">Please Registrasi</h1>
     
         <div class="form-floating">
-          <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan nama">
+          <input type="text" class="form-control" id="nama" name="nama" @error('nama') is-invalid @enderror placeholder="Masukan nama">
           <label for="nama">Nama</label>
         </div>
 
@@ -23,8 +24,8 @@
         </div>
 
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+          <input type="password" class="form-control" name="password" id="assword" placeholder="Password">
+          <label for="password">Password</label>
         </div>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Daftar!</button>
