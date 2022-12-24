@@ -6,7 +6,13 @@
             <div class="col-md-3"></div>
             <div class="col-md-6 align-self-center mt-2">
               <div class="card" style="width: 33rem;">
+                @if ($post->gambar)
+                <div style="max-height: 350px; overflow: hidden;">
+                  <img src="{{ asset('storage/' . $post->gambar) }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
+                </div>
+                @else
                   <img src="https://source.unsplash.com/1500x400?{{ $post->category->nama }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
+                @endif
                   <div class="card-body">
                     <h5 class="card-title">{{ $post->judul }}✔</h5>
                     <p>By <a href="/posts?user={{ $post->user->username }}">{{ $post->user->name }}</a> in <a href="/posts?category={{ $post->category->slug }}">{{ $post->category->nama }}</a></p>

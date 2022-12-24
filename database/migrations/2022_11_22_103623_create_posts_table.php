@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id');
             $table->string('judul');
             $table->string('slug')->unique();
+            $table->string('gambar')->nullable();
             $table->text('excrpt');
             $table->text('caption');
             $table->timestamp('published_at')->nullable();

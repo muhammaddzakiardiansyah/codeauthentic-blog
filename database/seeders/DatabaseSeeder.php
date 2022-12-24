@@ -17,15 +17,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-       User::factory(3)->create();
-       Post::factory(20)->create();
+       
     //    Category::factory(5)->create();
         
-        // User::create([
-        //     'name' => 'Muhammad Dzaki',
-        //     'email' => 'muhammaddzaki@gmail.com',
-        //     'password' => bcrypt('12345')
-        // ]);
+        User::create([
+            'name' => 'Muhammad Dzaki ardiansyah',
+            'username' => 'Muhammad dzaki',
+            'email' => 'muhammaddzaki@gmail.com',
+            'password' => bcrypt('12345')
+        ]);
 
         // User::create([
         //     'name' => 'Muhammad Abim',
@@ -52,6 +52,9 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Personal',
             'slug' => 'personal'
         ]);
+
+        User::factory(3)->create();
+        Post::factory(25)->create();
 
         // Post::create([
         //     'category_id' => '1',

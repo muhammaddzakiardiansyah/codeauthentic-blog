@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 class DashboardPostController extends Controller
@@ -42,13 +44,24 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
+    
         $tambahPostingan =  $request->validate([
                             'judul' => 'required|max:255',
-                            'slug' => 'required|max:255|unique:posts',
+                            'slug' => 'required|unique:posts',
                             'category_id' => 'required',
-                            'caption' => 'required|min:10|max:500'
+                            'gambar' => 'image|file|max:1024',
+                            'caption' => 'required'
         ]);
 
+        if(request('gambar')) {
+            $tambahPostingan['gambar'] = $request->file('gambar')->store('post-images');
+        }
+         
+        $tambahPostingan['user_id'] = auth()->user()->id;
+        $tambahPostingan['excrpt'] = Str::limit(strip_tags($request->caption), 100);
+
+        Post::create($tambahPostingan);
+        return redirect('/dashboard/posts')->with('success', 'Postingan baru berhasil di upload');
 
     }
 
@@ -73,7 +86,10 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('dashboard.posts.edit', [
+            'post' => $post,
+            'categories' => Category::all()
+          ]);
     }
 
     /**
@@ -85,7 +101,32 @@ class DashboardPostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $rules = [
+            'judul' => 'required|max:255',
+            'category_id' => 'required',
+            'caption' => 'required'
+        ];
+
+        if($request->slug != $post->slug) {
+            $rules['slug'] = 'required|unique:posts';
+        }
+
+        $validateData = $request->validate($rules);
+
+        if($request->file('gambar')) {
+            if($post->gambar) {
+                Storage::delete($post->gambar);
+            }
+
+            $validateData['gambar'] = $request->file('gambar')->store('post-images');
+        }
+
+        $validateData['user_id'] = auth()->user()->id;
+        $validateData['excrpt'] = Str::limit(strip_tags($request->caption), 100);
+
+        Post::where('id', $post->id)
+            ->update($validateData);
+        return redirect('/dashboard/posts')->with('success', 'Postingan berhasil di ubah');
     }
 
     /**
@@ -96,7 +137,12 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        if($post->gambar) {
+            Storage::delete($post->gambar);
+        }
+
+        Post::destroy($post->id);
+        return redirect('/dashboard/posts')->with('success', 'Postingan berhasil dihapus');
     }
 
     public function checkSlug(Request $request) {

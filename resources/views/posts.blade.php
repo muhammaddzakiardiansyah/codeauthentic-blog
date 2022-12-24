@@ -24,7 +24,13 @@
             </div>
             @if ($posts->count())
                 <div class="card mb-3">
-                  <img src="https://source.unsplash.com/1500x400{{ $posts[0]->category->nama }}" class="card-img-top" alt="...">
+                   @if ($posts[0]->gambar)
+                      <div style="max-height: 350px; overflow: hidden;">
+                        <img src="{{ asset('storage/' . $posts[0]->gambar) }}" class="card-img-top img-fluid" alt="{{ $posts[0]->category->nama }}" style="height: 25rem;">
+                      </div>
+                   @else
+                       <img src="https://source.unsplash.com/1500x400?{{ $posts[0]->category->nama }}" class="card-img-top img-fluid" alt="{{ $posts[0]->category->nama }}" style="height: 25rem;">
+                    @endif
                   <div class="card-body">
                     <h3 class="card-title"><a href="/post/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->judul }}</a></h3>
                     <small>
@@ -41,11 +47,17 @@
                   <div class="card" style="width: 33rem;">
                     <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.5); "><a href="/posts?category={{ $post->category->slug }}" class="text-white text-decoration-none">{{ $post->category->nama }}</a></div>
                     <a href="/post/{{ $post->slug }}" class="text-dark text-decoration-none">
-                      <img src="https://source.unsplash.com/1500x400?{{ $post->category->nama }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
+                      @if ($post->gambar)
+                       <div style="max-height: 350px; overflow: hidden;">
+                          <img src="{{ asset('storage/' . $post->gambar) }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
+                       </div>
+                      @else
+                          <img src="https://source.unsplash.com/1500x400?{{ $post->category->nama }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
+                      @endif
                       <div class="card-body">
                         <h5 class="card-title">{{ $post->judul }}</h5>
                         <small>Ditulis oleh <a href="/posts?user={{ $post->user->username }}">{{ $post->user->name }}</a> pada {{ $post->created_at->diffForHumans() }}</small>
-                        <p class="card-text">{{ $post->excrpt }} <a href="/post/{{ $post->slug }}" class="text-decoration-none">baca selengkapnya....</a></p>
+                        <p class="card-text">{{ !! $post->excrpt  }} <a href="/post/{{ $post->slug }}" class="text-decoration-none">baca selengkapnya....</a></p>
                     </a>
                     <div class="content">
                         <span class="badge text-bg-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
