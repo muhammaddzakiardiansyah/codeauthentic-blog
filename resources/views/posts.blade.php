@@ -57,7 +57,7 @@
                       <div class="card-body">
                         <h5 class="card-title">{{ $post->judul }}</h5>
                         <small>Ditulis oleh <a href="/posts?user={{ $post->user->username }}">{{ $post->user->name }}</a> pada {{ $post->created_at->diffForHumans() }}</small>
-                        <p class="card-text">{{ !! $post->excrpt  }} <a href="/post/{{ $post->slug }}" class="text-decoration-none">baca selengkapnya....</a></p>
+                        <p class="card-text">{{  $post->excrpt  }} <a href="/post/{{ $post->slug }}" class="text-decoration-none">baca selengkapnya....</a></p>
                     </a>
                     <div class="content">
                         <span class="badge text-bg-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">

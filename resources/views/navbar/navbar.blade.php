@@ -1,28 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg bg-primary-hmd fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="/">Codepelita</a>
+      <h3>
+        <a class="navbar-brand text-dark-hmd" href="/">Code<span class="text-secondary-hmd">authentic</span></a>
+      </h3>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ $active === 'home' ? 'active' : '' }}" href="/">Home</a>
+            <a class="nav-link fw-semibold hover-secondary-hmd {{ $active === 'home' ? 'active-secondary-hmd' : '' }}" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ $active === 'about' ? 'active' : '' }}" href="/about">About</a>
+            <a class="nav-link fw-semibold hover-secondary-hmd {{ $active === 'about' ? 'active-secondary-hmd' : '' }}" href="/about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ $active === 'musica' ? 'active' : '' }}" href="/musica">Musica</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ $active === 'posts' ? 'active' : '' }}" href="/posts">Posts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ $active === 'data' ? 'active' : '' }}" href="/data">Data</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ $active === 'categories' ? 'active' : '' }}" href="/categories">Categories</a>
+            <a class="nav-link fw-semibold hover-secondary-hmd {{ $active === 'categories' ? 'active-secondary-hmd' : '' }}" href="/categories">Categories</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -44,9 +37,9 @@
               </ul>
             </li>
           @else
-            <li class="nav-item">
-              <a href="/login" class="nav-link {{ $active === 'login' ? 'active' : '' }}"><i class="bi bi-box-arrow-right"></i> Login</a>
-            </li>
+            {{-- <li class="nav-item">
+              <a href="/login" class="nav-link fw-semibold hover-secondary-hmd {{ $active === 'login' ? 'active-secondary-hmd' : '' }}"><i class="bi bi-box-arrow-right"></i> Login</a>
+            </li> --}}
           @endauth
         </ul>
       </div>

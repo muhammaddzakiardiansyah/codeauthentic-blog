@@ -13,7 +13,7 @@
                    <img src="https://source.unsplash.com/1500x400?{{ $post->category->nama }}" class="card-img-top img-fluid" alt="gambar" style="height: 25rem;">
                 @endif
                   <div class="card-body">
-                    <h5 class="card-title">{{ $post->judul }}✔</h5>
+                    <h5 class="card-title">{{ $post->judul }}</h5>
                     <p class="card-text">{!! $post->caption !!}</p>
                 <div class="content">
                     <a href="/dashboard/posts" class="btn btn-success text-decoration-none"><span data-feather="arrow-left" class="align-text-bottom"></span> Kembali ke postingan</a>

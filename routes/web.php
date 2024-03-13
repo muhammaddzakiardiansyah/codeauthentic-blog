@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MusicaController;
@@ -21,12 +22,14 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home",
-        "active" => "home"
-    ]);
-});
+// Route::get('/', function () {
+//     return view('home', [
+//         "title" => "Home",
+//         "active" => "home"
+//     ]);
+// });
+
+Route::get('/', [HomeController::class, 'index'])->name('page home');
 
 Route::get('/about', function () {
     return view('about', [
