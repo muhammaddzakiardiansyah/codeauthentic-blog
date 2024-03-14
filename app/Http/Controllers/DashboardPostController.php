@@ -31,9 +31,9 @@ class DashboardPostController extends Controller
      */
     public function create()
     {
-       return view('dashboard.posts.create', [
-         'categories' => Category::all()
-       ]);
+        return view('dashboard.posts.create', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -44,19 +44,25 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-    
+
         $tambahPostingan =  $request->validate([
-                            'judul' => 'required|max:255',
-                            'slug' => 'required|unique:posts',
-                            'category_id' => 'required',
-                            'gambar' => 'image|file|max:1024',
-                            'caption' => 'required'
+            'judul' => 'required|max:255',
+            'slug' => 'required|unique:posts',
+            'category_id' => 'required',
+            'gambar' => 'image|file|max:1024',
+            'caption' => 'required'
         ]);
 
-        if(request('gambar')) {
-            $tambahPostingan['gambar'] = $request->file('gambar')->store('post-images');
+        if (request('gambar')) {
+            $file = $request->file('gambar');
+            $destination = public_path('uploads');
+            $image = uniqid() . '-' . $file->getClientOriginalName();
+            $file->move($destination, $image);
+            $tambahPostingan['gambar'] = $image;
+        } else {
+            $tambahPostingan['gambar'] = null;
         }
-         
+
         $tambahPostingan['user_id'] = auth()->user()->id;
         $tambahPostingan['excrpt'] = Str::limit(strip_tags($request->caption), 100);
 
@@ -89,7 +95,7 @@ class DashboardPostController extends Controller
         return view('dashboard.posts.edit', [
             'post' => $post,
             'categories' => Category::all()
-          ]);
+        ]);
     }
 
     /**
@@ -107,14 +113,14 @@ class DashboardPostController extends Controller
             'caption' => 'required'
         ];
 
-        if($request->slug != $post->slug) {
+        if ($request->slug != $post->slug) {
             $rules['slug'] = 'required|unique:posts';
         }
 
         $validateData = $request->validate($rules);
 
-        if($request->file('gambar')) {
-            if($post->gambar) {
+        if ($request->file('gambar')) {
+            if ($post->gambar) {
                 Storage::delete($post->gambar);
             }
 
@@ -137,7 +143,7 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if($post->gambar) {
+        if ($post->gambar) {
             Storage::delete($post->gambar);
         }
 
@@ -145,7 +151,8 @@ class DashboardPostController extends Controller
         return redirect('/dashboard/posts')->with('success', 'Postingan berhasil dihapus');
     }
 
-    public function checkSlug(Request $request) {
+    public function checkSlug(Request $request)
+    {
         $slug = SlugService::createSlug(Post::class, 'slug', $request->judul);
         return response()->json(['slug' => $slug]);
     }

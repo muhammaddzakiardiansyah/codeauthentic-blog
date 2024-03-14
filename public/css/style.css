@@ -12,14 +12,14 @@
   font-style: normal;
 }
 
-body {
+/* body {
   background-color: var(--second);
-}
+} */
 
-img {
+/* img {
     width: 130px;
     height: 150px;
-}
+} */
 
 .card {
     transition: 0.5s;
@@ -31,9 +31,9 @@ img {
     flex: 1 1 auto;
 }
 
-.card:hover {
+/* .card:hover {
     transform: translateY(-10px);
-}
+} */
 
 .form-signin .form-floating:focus-within {
   z-index: 2;
@@ -108,6 +108,10 @@ img {
 .container-fluid {
   margin: 0;
   padding: 0;
+}
+
+.text-red {
+  color: rgb(255, 0, 0);
 }
 
 .card-hmd {

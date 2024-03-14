@@ -8,7 +8,8 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- Custom styles for this template -->
-    <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="{{ asset('/css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     {{-- trix editor --}}
       <link rel="stylesheet" type="text/css" href="/css/trix.css">
       <script type="text/javascript" src="/js/trix.js"></script>

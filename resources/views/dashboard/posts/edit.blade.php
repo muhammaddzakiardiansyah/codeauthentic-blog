@@ -10,7 +10,7 @@
             @method('put')
             @csrf
             <div class="mb-3">
-              <label for="judul" class="form-label">Judul</label>
+              <label for="judul" class="form-label">Judul <span class="text-red">*</span></label>
               <input type="judul" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" autofocus placeholder="Judul" value="{{ old('judul', $post->judul) }}">
               @error('judul')
                   <div class="invalid-feedback">
@@ -19,7 +19,7 @@
               @enderror
             </div>
             <div class="mb-3">
-              <label for="slug" class="form-label">Slug</label>
+              <label for="slug" class="form-label">Slug <span class="text-red">*</span></label>
               <input type="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" placeholder="slug" value="{{ old('slug', $post->slug) }}">
               @error('slug')
                   <div class="invalid-feedback">
@@ -28,7 +28,7 @@
               @enderror
             </div>
             <div class="mb-3">
-              <label for="category" class="form-label">Category</label>
+              <label for="category" class="form-label">Category <span class="text-red">*</span></label>
               <select class="form-select" name="category_id">
                 @foreach ($categories as $category)
                   @if (old('category_id', $post->category->id) == $category->id)
@@ -58,7 +58,7 @@
               @enderror
             </div>
             <div class="mb-3">
-              <label for="caption" class="form-label">Caption</label>
+              <label for="caption" class="form-label">Caption <span class="text-red">*</span></label>
               <input id="caption" type="hidden" name="caption" value="{{ old('caption', $post->caption) }}">
               <trix-editor input="caption"></trix-editor>
               @error('caption')
@@ -69,11 +69,13 @@
             </div>
 
 
-            <button type="submit" class="btn btn-primary">Ubah Postingan</button>
+            <button type="submit" class="btn btn-primary btn-sm">Ubah Postingan</button>
           </form>
     </div>
 
     <script>
+       const file = document.querySelector('.trix-button-group--file-tools');
+       file.style.display = 'none';
        const judul = document.querySelector('#judul');
        const slug = document.querySelector('#slug');
 

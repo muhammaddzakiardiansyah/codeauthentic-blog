@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('isiutama')
-<div class="contents mt-5">
+<div class="contents">
     <div class="card-hmd">
             <article class="text-hmd fw-medium">
                 <p>
